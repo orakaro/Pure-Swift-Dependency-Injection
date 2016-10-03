@@ -72,7 +72,7 @@ class MixInTeamService: TeamService {
     let userService: UserService = MixInUserService()
 }
 ```
-All this kind of wiring is statically typed. If we have a dependency declaration missing, if it is misspelled then we get a compilation error. Furthermore Implementation is immutable (declared as `let`).
+All this kind of wiring is statically typed. If we have a dependency declaration missing or something is misspelled then we get a compilation error. Furthermore implementation is immutable (declared as `let`).
 
 ## Application use Implementation
 For example our application using `TeamService` can be like this
@@ -95,7 +95,7 @@ class UserServiceForTest: UserService {
 let testService = UserServiceForTest()
 print(testService.promote(asigneeId: 1)) // nil
 ```
-The same method can be used to inject `TeamService` to test `buildTeam` method.
+The same way can be used to inject `TeamService` to test `buildTeam` method.
 ```swift
 class TeamServiceForTest: TeamService {
     let userService: UserService = UserServiceForTest()
@@ -104,7 +104,7 @@ let applicationTest = TeamServiceForTest()
 let testTeam = applicationTest.buildTeam(leader: User(id: 1, name: "orakaro", role: "member"))
 print(testTeam) // [nil]
 ```
-Here is imagination at this time
+The big picture is now:
 ![](https://i.gyazo.com/b52857f6cf2e0d7054ffeb6efde62b62.png)
 
 For more detail see playground in this repo.
